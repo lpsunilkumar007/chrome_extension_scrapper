@@ -25,7 +25,7 @@
       "run_at": "document_end"
     }
   ],
-  "host_permissions": ["http://*/*", "https://*/*", "http://localhost:52959/api/posturl"],
+  "host_permissions": ["http://*/*", "https://*/*", "https://localhost:7278/api/posturl"],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'",
     "sandbox": "sandbox"

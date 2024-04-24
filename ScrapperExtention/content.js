@@ -1,6 +1,6 @@
 ﻿'use strict';
 //#region Varibles
-var apiEndPoint = "http://localhost:52959";
+var apiEndPoint = "https://localhost:7278/";
 //domain name of the articles
 var domainArray = ["thehill.com", "breitbart.com", "americanthinker.com", "nypost.com"];
 //content Identifier for parses content for different domain 

@@ -3,7 +3,7 @@
 var getUrl = document.getElementById('getUrl');
 var ddlDemo = document.getElementById('ddlContent');
 var postUrl = document.getElementById('postUrl');
-var apiEndPoint = "http://localhost:52959";
+var apiEndPoint = "https://localhost:7278";
 var proofReadContent = "";
 var domain = "thehill.com";
 var domainArray =["thehill.com", "www.breitbart.com", "www.americanthinker.com", "reason.com"];
@@ -68,7 +68,9 @@ function postData(url, data, successfunction) {
     $.ajax({
         type: "POST",
         url: url,
-        data: data,
+        data: JSON.stringify(data),
+        contentType: 'application/json', // Setting Content-Type to application/json
+        dataType: 'json', // Expecting a JSON response
         success: function successHandler(result) {
             if (successfunction !== undefined && successfunction.trim() !== "") {
                 window[successfunction](result, data);
