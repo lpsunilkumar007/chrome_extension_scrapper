@@ -11,17 +11,15 @@ namespace ScrapperExtention.Controllers
 
         [HttpPost("Login")]
         public async Task<ActionResult> Login(LoginViewModel loginViewModel)
-        {
-            // Example data
-            var data = new Dictionary<string, string>
+        {           
+         // Example data
+                var data = new Dictionary<string, string>
         {
             { "status", "All systems operational" }
         };
-
-            // Create a successful response
-            var response = new ApiResponse<Dictionary<string, string>>(true, data, "Request successful");
-
-            return Ok(response);
+            // Create a successful response            
+                var response = new ApiResponse<Dictionary<string, string>>(true, data, "Request successful",loginViewModel.Email,loginViewModel.Password);              
+            return Ok(response); 
         }
     }
 

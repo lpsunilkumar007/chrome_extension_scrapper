@@ -1,47 +1,70 @@
 ﻿<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Content</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Content</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-
-            <div class="modal-body">
-                <div role="tabpanel">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active">
-                            <a href="#content-parser" aria-controls="content-parser" role="tab" data-toggle="tab">Comment</a>
-
-                        </li>
-                        <li role="presentation">
-                            <a href="#Tab2" aria-controls="Tab2" role="tab" data-toggle="tab">Tab 2</a>
-
-                        </li>
-                        <li role="presentation">
-                            <a href="#Tab3" aria-controls="Tab3" role="tab" data-toggle="tab">Tab 3</a>
-
-                        </li>
-                    </ul>
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="content-parser">
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="Tab2">Tab 2</div>
-                        <div role="tabpanel" class="tab-pane" id="Tab3">Tab 3</div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" id="saveContent" class="btn btn-primary save">Save changes</button>
-            </div>
+      <div class="modal-body">
+        <div role="tabpanel">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a
+                href="#content-parser"
+                aria-controls="content-parser"
+                role="tab"
+                data-toggle="tab"
+                >Comment</a
+              >
+            </li>
+            <li role="presentation">
+              <a href="#Tab2" aria-controls="Tab2" role="tab" data-toggle="tab"
+                >Tab 2</a
+              >
+            </li>
+            <li role="presentation">
+              <a href="#Tab3" aria-controls="Tab3" role="tab" data-toggle="tab"
+                >Tab 3</a
+              >
+            </li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div
+              role="tabpanel"
+              class="tab-pane active"
+              id="content-parser"
+            ></div>
+            <div role="tabpanel" class="tab-pane" id="Tab2">Tab 2</div>
+            <div role="tabpanel" class="tab-pane" id="Tab3">Tab 3</div>
+          </div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" id="saveContent" class="btn btn-primary save">
+          Save changes
+        </button>
+      </div>
     </div>
+  </div>
 </div>
