@@ -1,6 +1,6 @@
 ﻿'use strict';
 //#region Variables
-var proofReadContent = "";
+var chromeScraperContent = "";
 //#endregion
 
 //#region Chrome Extension Method
@@ -11,14 +11,13 @@ chrome.runtime.onInstalled.addListener(function () {
 
 //listen message from content.js
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-    proofReadContent = msg;    
+    chromeScraperContent = msg;    
 });
 
 //send message to popup.js
 chrome.runtime.onConnect.addListener(function (port) {
-    console.log(port);
     port.onMessage.addListener(function (msg) {
-        port.postMessage(proofReadContent);
+        port.postMessage(chromeScraperContent);
     });
 });
 

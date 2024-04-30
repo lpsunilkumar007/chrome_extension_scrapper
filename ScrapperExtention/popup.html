@@ -1,702 +1,500 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
-    />
+<head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
     <style>
-      body {
-        min-width: 350px;
-        /*height: 400px;*/
-        font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-        font-size: 16px;
-      }
+        body {
+            min-width: 350px;
+            /*height: 400px;*/
+            font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+        }
     </style>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <style>
-      .showPassword.textual {
-        position: absolute;
-        top: 26px;
-        right: 0;
-        width: auto;
-        background-image: none;
-        font-size: 11px;
-        max-width: 100%;
-        color: #a1a9ad;
-        height: 29px;
-        border: 0;
-      }
+        /* common classes */
+        .form-group .form-control:focus {
+            box-shadow: 0 0 0 3px #81d6e3 !important;
+            outline: none !important;
+        }
 
-      /* common classes */
-      .form-group .form-control:focus {
-        box-shadow: 0 0 0 3px #81d6e3 !important;
-        outline: none !important;
-      }
+        body {
+            font-size: 13px !important;
+            font-family: "Open Sans", sans-serif !important;
+            color: #3f3f3a !important;
+            background-color: #f5fdfa !important;
+        }
 
-      body {
-        font-size: 13px !important;
-        font-family: "Open Sans", sans-serif !important;
-        color: #3f3f3a !important;
-        background-color: #f5fdfa !important;
-      }
+        a.text-primary:hover,
+        a.text-primary:active,
+        a.text-primary:focus {
+            text-decoration: none !important;
+            color: #06af7c !important;
+        }
 
-      a.text-primary:hover,
-      a.text-primary:active,
-      a.text-primary:focus {
-        text-decoration: none !important;
-        /* color: #d32d27 !important; */
-        color: #06af7c !important;
+        .btn-primary {
+            background-color: #06af7c;
+            color: #fff !important;
+        }
 
-        /* color: rgb(5 150 105 / var(--tw-text-opacity)); */
-      }
+        .text-primary {
+            color: #06af7c !important;
+        }
 
-      .btn-primary {
-        /* background-color: #d32d27; */
-        background-color: #06af7c;
+        .bg-primary {
+            background-color: #d32d27 !important;
+        }
 
-        /* background-color: rgb(5 150 105 / var(--tw-text-opacity)); */
-        color: #fff !important;
-        /* border-color: #af0806; */
-        /* border-color: #06af7c !important; */
-        /* border-color: rgb(5 150 105 / var(--tw-text-opacity)); */
-      }
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active {
+            background-color: #06af7c !important;
+            color: #fff;
+        }
 
-      .text-primary {
-        /* color: #d32d27 !important; */
-        color: #06af7c !important;
+        .or-text {
+            position: relative;
+            top: 10px;
+            color: #8c969d;
+        }
 
-        /* color: rgb(5 150 105 / var(--tw-text-opacity)); */
-      }
+        .card-footer {
+            font-size: 15px !important;
+        }
 
-      .bg-primary {
-        background-color: #d32d27 !important;
-        /* background-color: rgb(5 150 105 / var(--tw-text-opacity)); */
-      }
+        .bg-light {
+            background-color: #f5fdfa !important;
+        }
 
-      .btn-primary:hover,
-      .btn-primary:focus,
-      .btn-primary:active {
-        background-color: #06af7c !important;
-        /* background-color: #af0806 !important; */
-        /* border-color: #910101 !important; */
-        color: #fff;
-      }
+        .card-body {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
 
-      .or-text {
-        position: relative;
-        top: 10px;
-        color: #8c969d;
-      }
+        ::placeholder {
+            opacity: 0;
+        }
 
-      .card-footer {
-        font-size: 15px !important;
-      }
+        .border-50 {
+            border-radius: 50px !important;
+        }
 
-      .bg-light {
-        background-color: #f5fdfa !important;
-      }
+        #section-register .nbtn {
+            width: auto;
+            /* min-width: 100px; */
+            max-width: 100% !important;
+            height: 36px;
+            padding: 0 24px 0 24px;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 100px;
+        }
 
-      .card-body {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-      }
-
-      /*label */
-      .inp {
-        position: relative;
-        width: 100%;
-      }
-
-      .inp .label {
-        position: absolute;
-        top: 20px;
-        left: 2px;
-        font-size: 13px;
-        color: rgba(0, 0, 0, 0.5);
-        font-weight: 500;
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        -webkit-transition: all 0.2s ease;
-        transition: all 0.2s ease;
-        pointer-events: none;
-      }
-
-      .inp .focus-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        /*background: rgba(0, 0, 0, 0.05);*/
-        z-index: -1;
-        -webkit-transform: scaleX(0);
-        transform: scaleX(0);
-        -webkit-transform-origin: left;
-        transform-origin: left;
-      }
-
-      .inp input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        width: 100%;
-        border: 0;
-        font-family: inherit;
-        padding: 16px 12px 0 2px;
-        height: 56px;
-        font-size: 16px;
-        font-weight: 400;
-        /*background: rgba(0, 0, 0, 0.02);*/
-        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-        color: #000;
-        -webkit-transition: all 0.15s ease;
-        transition: all 0.15s ease;
-      }
-
-      .inp input:hover {
-        /*background: rgba(0, 0, 0, 0.04);*/
-        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.5);
-      }
-
-      .inp input:not(:placeholder-shown) + .label {
-        color: rgba(0, 0, 0, 0.5);
-        -webkit-transform: translate3d(0, -12px, 0) scale(0.75);
-        transform: translate3d(0, -12px, 0) scale(0.75);
-      }
-
-      .inp input:focus {
-        /*background: rgba(0, 0, 0, 0.05);*/
-        outline: none;
-        box-shadow: inset 0 -2px 0 #3498db;
-      }
-
-      .inp input:focus + .label {
-        color: #3498db;
-        -webkit-transform: translate3d(0, -12px, 0) scale(0.75);
-        transform: translate3d(0, -12px, 0) scale(0.75);
-      }
-
-      .inp input:focus + .label + .focus-bg {
-        -webkit-transform: scaleX(1);
-        transform: scaleX(1);
-        -webkit-transition: all 0.1s ease;
-        transition: all 0.1s ease;
-      }
-
-      input:focus::placeholder {
-        opacity: 1 !important;
-      }
-
-      ::placeholder {
-        opacity: 0;
-      }
-
-      .border-50 {
-        border-radius: 50px !important;
-      }
-
-      #section-register .nbtn {
-        width: auto;
-        /* min-width: 100px; */
-        max-width: 100% !important;
-        height: 36px;
-        padding: 0 24px 0 24px;
-        text-transform: uppercase;
-        font-size: 11px;
-        font-weight: 600;
-        border-radius: 100px;
-      }
-
-      .error-info-label {
-        color: red !important;
-        font-size: 13px;
-        font-weight: normal;
-        line-height: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: inline-block;
-        /*white-space: nowrap;*/
-      }
-
-      .error-message-position {
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin-top: -13px;
-      }
+        .error-info-label {
+            color: red !important;
+            font-size: 13px;
+            font-weight: normal;
+            line-height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+            /*white-space: nowrap;*/
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <!-- Login View Start -->
-    <section
-      id="section-login"
-      class="d-none"
-      data-parent-container="section-login"
-    >
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <div class="col-lg-12 p-0">
-            <div class="card rounded-0 bg-light">
-              <div class="card-header text-center border-0 bg-light">
-                <div class="h4 font-weight-bold mb-0">
-                  <span class="text-dark">Chrome</span
-                  ><span class="text-primary">Scrapper</span>
-                </div>
-              </div>
-              <div class="card-body">
-                <!-- form start  -->
-                <div class="text-center">
-                  <span
-                    class="label error-info-label d-none text-center"
-                    id="section-set-login-error"
-                  >
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span id="section-set-login-error-text"> </span>
-                  </span>
-                </div>
+    <section id="section-login"
+             class="d-none"
+             data-parent-container="section-login">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12 p-0">
+                    <div class="card rounded-0 bg-light">
+                        <div class="card-header text-center border-0 bg-light">
+                            <div class="h4 font-weight-bold mb-0">
+                                <span class="text-dark">Chrome</span><span class="text-primary">Scrapper</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- form start  -->
+                            <div class="text-center">
+                                <span class="label error-info-label d-none text-center"
+                                      id="section-set-login-error">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span id="section-set-login-error-text"> </span>
+                                </span>
+                            </div>
 
-                <form>
-                  <div class="form-group">
-                    <label class="mb-1 info-label">Email</label>
-                    <label class="mb-1 error-info-label d-none"
-                      ><i class="fas fa-exclamation-circle"></i> Enter a valid
-                      Email</label
-                    >
-                    <input
-                      placeholder=""
-                      class="form-control form-control-lg"
-                      type="text"
-                      required=""
-                      id="txtLoginEmail"
-                    />
-                  </div>
-                  <div class="form-group mb-1">
-                    <label class="mb-1 info-label">Password</label>
-                    <label class="mb-1 error-info-label d-none"
-                      ><i class="fas fa-exclamation-circle"></i> Enter a
-                      Password</label
-                    >
-                    <a href="#" class="float-right mb-1 text-primary"
-                      >Recovery Help</a
-                    >
-                    <input
-                      class="form-control form-control-lg"
-                      type="password"
-                      placeholder=""
-                      required=""
-                      id="txtLoginPassword"
-                    />
-                  </div>
-                  <div>
-                    <div class="form-group form-check mb-0 float-left">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="exampleCheck1"
-                      />
-                      <label class="form-check-label" for="exampleCheck1"
-                        >Remember Email</label
-                      >
-                    </div>
-                    <div class="form-group form-check mb-0 float-right">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="exampleCheck1"
-                      />
-                      <label class="form-check-label" for="exampleCheck1"
-                        >Remember Password</label
-                      >
-                    </div>
-                  </div>
+                            <form>
+                                <div class="form-group">
+                                    <label class="mb-1 info-label">Email</label>
+                                    <input placeholder=""
+                                           class="form-control form-control-lg"
+                                           type="text"
+                                           required=""
+                                           id="txtLoginEmail" />
+                                    <label class="mb-1 error-info-label d-none">
+                                        <i class="fas fa-exclamation-circle"></i> Enter a valid
+                                        Email
+                                    </label>
+                                </div>
+                                <div class="form-group mb-1">
+                                    <label class="mb-1 info-label">Password</label>
+                                    <a href="#" class="float-right mb-1 text-primary">Recovery Help</a>
+                                    <input class="form-control form-control-lg"
+                                           type="password"
+                                           placeholder=""
+                                           required=""
+                                           id="txtLoginPassword" />
+                                    <label class="mb-1 error-info-label d-none">
+                                        <i class="fas fa-exclamation-circle"></i> Enter a
+                                        Password
+                                    </label>
+                                </div>
+                                <div>
+                                    <div class="form-group form-check mb-0 float-left">
+                                        <input type="checkbox"
+                                               class="form-check-input"
+                                               id="exampleCheck1" />
+                                        <label class="form-check-label" for="exampleCheck1">Remember Email</label>
+                                    </div>
+                                    <div class="form-group form-check mb-0 float-right">
+                                        <input type="checkbox"
+                                               class="form-check-input"
+                                               id="exampleCheck1" />
+                                        <label class="form-check-label" for="exampleCheck1">Remember Password</label>
+                                    </div>
+                                </div>
 
-                  <button
-                    type="button"
-                    class="btn btn-primary mt-5 mb-2 btn-block py-3"
-                    id="btnLogin"
-                  >
-                    Log In
-                  </button>
-                  <div class="border-bottom text-center mx-4">
-                    <span class="or-text p-2 bg-light">Or</span>
-                  </div>
-                </form>
-                <!-- /form -->
-              </div>
-              <div
-                class="card-footer border-0 text-center text-primary pt-0 bg-light"
-              >
-                <a
-                  style="cursor: pointer"
-                  id="btnCreateAccount"
-                  data-parent-container="section-register"
-                  class="text-primary"
-                  >Create an account</a
-                >
-              </div>
+                                <button type="button"
+                                        class="btn btn-primary mt-5 mb-2 btn-block py-3"
+                                        id="btnLogin">
+                                    Log In
+                                </button>
+                                <div class="border-bottom text-center mx-4">
+                                    <span class="or-text p-2 bg-light">Or</span>
+                                </div>
+                            </form>
+                            <!-- /form -->
+                        </div>
+                        <div class="card-footer border-0 text-center text-primary pt-0 bg-light">
+                            <a style="cursor: pointer"
+                               id="btnCreateAccount"
+                               data-parent-container="section-register"
+                               class="text-primary">Create an account</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <!-- /row -->
         </div>
-        <!-- /row -->
-      </div>
     </section>
     <!-- Login View End -->
     <!-- Register View Start -->
-    <section
-      id="section-register"
-      class="d-none"
-      data-parent-container="section-register"
-    >
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <div class="col-lg-12 p-0">
-            <div class="card rounded-0">
-              <div class="card-header border-0 bg-light">
-                <div class="h6 mb-0">
-                  <span class="text-dark">Get started with your email</span>
+    <section id="section-register"
+             class="d-none"
+             data-parent-container="section-register">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12 p-0">
+                    <div class="card rounded-0">
+                        <div class="card-header border-0 bg-light">
+                            <div class="h6 mb-0">
+                                <span class="text-dark">Get started with your email</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- form -->
+                            <form>
+                                <div class="form-group">
+                                    <label class="mb-2 info-label">Email Address</label>
+                                    <input type="text"
+                                           id="txtnewUserEmail"
+                                           class="form-control form-control-lg"
+                                           placeholder="Enter your Email Address" />
+                                    <span class="error-info-label error-message-position d-none">
+                                        <i class="fas fa-exclamation-circle"></i> Enter a valid
+                                        Email
+                                    </span>
+                                </div>
+                                <div class="termsConditions" id="termsConditions">
+                                    <span compoundtranslation="">
+                                        By completing this form, I agree to the
+                                        <a target="_blank" href="#" id="termsLink">Terms</a> and
+                                        <a target="_blank" href="#" id="privacyLink">Privacy Policy</a>.
+                                    </span>
+                                    <span compoundtranslation="" class="contactPermissionClause">
+                                        I want to receive promotional emails, unless
+                                        <a id="chooseOtherwise" data-default-opt-out-value="0">I opt out</a>.
+                                    </span>
+                                </div>
+
+                                <div class="row p-3">
+                                    <div class="col-5 p-0">
+                                        <button type="button"
+                                                class="nbtn border-50 btn btn-outline-light text-dark btn-block float-left"
+                                                id="btnBackToLoginSection"
+                                                data-parent-container="section-login">
+                                            SIGN IN
+                                        </button>
+                                    </div>
+
+                                    <div class="col-7 p-0">
+                                        <button type="button"
+                                                class="nbtn border-50 btn btn-primary btn-block float-right"
+                                                id="btnShowSetPassword"
+                                                data-parent-container="section-register">
+                                            CREATE AN ACCOUNT
+                                        </button>
+
+                                        <a id="btnshowSetPassForm"
+                                           class="d-none"
+                                           data-parent-container="section-set-password"></a>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- /form -->
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <!-- form -->
-                <form>
-                  <div class="form-group">
-                    <!-- label -->
-                    <label for="inp" class="inp">
-                      <input
-                        type="text"
-                        id="txtnewUserEmail"
-                        placeholder="You'll use this to sign in to ProofRead"
-                      />
-                      <span class="label info-label">Email address</span>
-                      <span
-                        class="error-info-label error-message-position d-none"
-                        ><i class="fas fa-exclamation-circle"></i> Enter a valid
-                        Email</span
-                      >
-
-                      <span class="focus-bg"></span>
-                    </label>
-                    <!-- /label -->
-                  </div>
-
-                  <div class="termsConditions" id="termsConditions">
-                    <span compoundtranslation=""
-                      >By completing this form, I agree to the
-                      <a target="_blank" href="#" id="termsLink">Terms</a> and
-                      <a target="_blank" href="#" id="privacyLink"
-                        >Privacy Policy</a
-                      >.</span
-                    >
-                    <span compoundtranslation="" class="contactPermissionClause"
-                      >I want to receive promotional emails, unless
-                      <a id="chooseOtherwise" data-default-opt-out-value="0"
-                        >I opt out</a
-                      >.</span
-                    >
-                    <div class="checkboxContainer contactPermissionContainer">
-                      <input
-                        id="contactPermissionCheckbox"
-                        class="checkbox"
-                        type="checkbox"
-                        spellcheck="false"
-                      />
-                      <label
-                        for="contactPermissionCheckbox"
-                        class="checkboxLabel"
-                        >I prefer not to receive promotional emails.</label
-                      >
-                    </div>
-                  </div>
-
-                  <div class="row p-3">
-                    <div class="col-5 p-0">
-                      <button
-                        type="button"
-                        class="nbtn border-50 btn btn-outline-light text-dark btn-block float-left"
-                        id="btnBackToLoginSection"
-                        data-parent-container="section-login"
-                      >
-                        SIGN IN
-                      </button>
-                    </div>
-
-                    <div class="col-7 p-0">
-                      <button
-                        type="button"
-                        class="nbtn border-50 btn btn-primary btn-block float-right"
-                        id="btnShowSetPassword"
-                        data-parent-container="section-register"
-                      >
-                        CREATE AN ACCOUNT
-                      </button>
-
-                      <a
-                        id="btnshowSetPassForm"
-                        class="d-none"
-                        data-parent-container="section-set-password"
-                      ></a>
-                    </div>
-                  </div>
-                </form>
-                <!-- /form -->
-              </div>
             </div>
-          </div>
+            <!-- /row -->
         </div>
-        <!-- /row -->
-      </div>
     </section>
     <!-- Register View End -->
     <!-- set password View Start -->
-    <section
-      id="section-set-password"
-      class="d-none"
-      data-parent-container="section-set-password"
-    >
-      <!--class="d-none">-->
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <div class="col-lg-12 p-0">
-            <div class="card rounded-0">
-              <div class="card-header border-0 bg-light">
-                <div class="h6 font-weight-bold mb-0">
-                  <span class="text-dark" id="new-user-email"
-                    >user@gmail.com</span
-                  >
+    <section id="section-set-password"
+             class="d-none"
+             data-parent-container="section-set-password">
+        <!--class="d-none">-->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12 p-0">
+                    <div class="card rounded-0">
+                        <div class="card-header border-0 bg-light">
+                            <div class="h6 font-weight-bold mb-0">
+                                <span class="text-dark" id="new-user-email">user@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- form -->
+                            <form>
+                                <div class="form-group">
+                                    <label class="mb-2 info-label">Username</label>
+                                    <input type="text"
+                                           id="txtUsername"
+                                           class="form-control form-control-lg"
+                                           data-toggle="txtUsername"
+                                           placeholder="Username" />
+                                    <span class="label error-info-label d-none error-message-position">
+                                        <i class="fas fa-exclamation-circle"></i> Username is
+                                        required
+                                    </span>
+                                </div>
+                                <div class="form-group input-group">
+                                    <label class="mb-2 info-label">Password</label>
+                                    <div class="input-group" id="show_hide_password">
+                                        <input class="form-control form-control-lg" id="txtNewUserPassword" type="password" placeholder="Password">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <a href="" class="text-dark"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="label error-info-label d-none error-message-position">
+                                        <i class="fas fa-exclamation-circle"></i> Password is
+                                        required
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="mb-2 info-label">Confirm Password</label>
+                                    <div class="input-group" id="txtNewUserConfirmPassword">
+                                        <input class="form-control form-control-lg" id="txtUserConfirmPassword" type="password" placeholder="Confirm Password">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <a href="" class="text-dark"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="label error-info-label d-none error-message-position">
+                                        <i class="fas fa-exclamation-circle"></i> Make sure
+                                        this matches your master password
+                                    </span>
+                                </div>
+                                <span class="label error-info-label d-none"
+                                      id="section-set-password-error">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span id="section-set-password-error-text"> </span>
+                                </span>
+
+                                <div class="row p-3">
+                                    <div class="col-5 p-0">
+                                        <button type="button"
+                                                class="nbtn border-50 btn btn-outline-light text-dark btn-block float-left"
+                                                id="btnBacktoLogin"
+                                                data-parent-container="section-register">
+                                            BACK
+                                        </button>
+                                    </div>
+
+                                    <div class="col-7 p-0">
+                                        <button type="button"
+                                                class="nbtn border-50 btn btn-primary btn-block float-right"
+                                                id="btnCreateNewUser">
+                                            NEXT
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- /form -->
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <!-- form -->
-                <form>
-                  <div class="form-group">
-                    <!-- label -->
-                    <label for="inp" class="inp">
-                      <input
-                        type="text"
-                        id="txtUsername"
-                        data-toggle="txtUsername"
-                        placeholder="Username"
-                      />
-                      <span class="label info-label">Username</span>
-                      <span
-                        class="label error-info-label d-none error-message-position"
-                        ><i class="fas fa-exclamation-circle"></i> Username is
-                        required
-                      </span>
-
-                      <span class="focus-bg"></span>
-                    </label>
-                    <!-- /label
-
-    <!-- label -->
-                    <label for="inp" class="inp">
-                      <input
-                        type="password"
-                        id="txtNewUserPassword"
-                        data-toggle="txtNewUserPassword"
-                        placeholder="Password"
-                      />
-                      <span class="label info-label">Password</span>
-                      <span
-                        class="label error-info-label d-none error-message-position"
-                        ><i class="fas fa-exclamation-circle"></i> Password is
-                        required
-                      </span>
-
-                      <span class="focus-bg"></span>
-                      <button
-                        type="button"
-                        class="showPassword textual"
-                        title="Show Password"
-                        data-toggle="txtNewUserPassword"
-                      >
-                        SHOW
-                      </button>
-                    </label>
-                    <!-- /label
-
-    <!-- label -->
-                    <label for="inp" class="inp">
-                      <input
-                        type="password"
-                        id="txtNewUserConfirmPassword"
-                        placeholder="Confirm Password"
-                      />
-                      <span class="label info-label">Confirm Password</span>
-                      <span
-                        class="label error-info-label d-none error-message-position"
-                        ><i class="fas fa-exclamation-circle"></i> Make sure
-                        this matches your master password</span
-                      >
-                      <span class="focus-bg"></span>
-                      <button
-                        type="button"
-                        class="showPassword textual"
-                        title="Show Password"
-                        data-toggle="txtNewUserConfirmPassword"
-                        style=""
-                      >
-                        SHOW
-                      </button>
-                    </label>
-                    <!-- /label -->
-                    <!-- label -->
-                    <label for="inp" class="inp">
-                      <input
-                        type="text"
-                        id="txtNewUserPasswordHint"
-                        placeholder="Password Hint(optional)"
-                      />
-                      <span class="label">Password Hint</span>
-                      <span class="focus-bg"></span>
-                    </label>
-                    <!-- /label -->
-                  </div>
-
-                  <span
-                    class="label error-info-label d-none"
-                    id="section-set-password-error"
-                  >
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span id="section-set-password-error-text"> </span>
-                  </span>
-
-                  <div class="row p-3">
-                    <div class="col-5 p-0">
-                      <button
-                        type="button"
-                        class="nbtn border-50 btn btn-outline-light text-dark btn-block float-left"
-                        id="btnBacktoLogin"
-                        data-parent-container="section-register"
-                      >
-                        BACK
-                      </button>
-                    </div>
-
-                    <div class="col-7 p-0">
-                      <button
-                        type="button"
-                        class="nbtn border-50 btn btn-primary btn-block float-right"
-                        id="btnCreateNewUser"
-                      >
-                        NEXT
-                      </button>
-                    </div>
-                  </div>
-                </form>
-                <!-- /form -->
-              </div>
             </div>
-          </div>
+            <!-- /row -->
         </div>
-        <!-- /row -->
-      </div>
     </section>
     <!-- set password View End -->
     <!-- PRD section -->
-    <section
-      id="section-PRD-container"
-      class="d-none"
-      data-parent-container="section-PRD-container"
-    >
-      <div class="row bg-light">
-        <div class="col-12 px-4 py-3">
-          <table width="100%" class="bg-light">
-            <tr>
-              <td width="50%">
-                <div class="h4 font-weight-bold mb-0 row">
-                  <div class="col-3">
-                    <img
-                      src="images/icon.png"
-                      style="height: 30px"
-                      class="bg-light"
-                    />
-                  </div>
-                  <div class="col-9">
-                    <span class="text-dark">Add</span
-                    ><span class="text-primary">Comment</span>
-                  </div>
-                </div>
-                <!-- <span style="font-size: 18px; position: relative; top: 3px"
-                  ><b>Add</b> Comment</span
-                > -->
-              </td>
-              <td width="50%" align="right">
-                <span
-                  ><i
-                    class="far fa-question-circle fa-2x"
-                    style="color: #ccc; font-size: 18px"
-                  ></i
-                ></span>
-                <span id="logoutUser"
-                  ><i
-                    class="fas fa-sign-out-alt fa-2x"
-                    style="color: #ccc; font-size: 18px"
-                  ></i
-                ></span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="col-12 px-4 py-3 bg-light">
-          <!-- style="background-color: #f4f4f4" -->
-          <table width="100%" class="bg-light">
-            <tr>
-              <td>
-                <b>Comments:</b>
-              </td>
-            </tr>
-            <tr>
-              <td width="50%">
-                <span id="total-comment" style="color: red">0</span> on this
-                page
-              </td>
-              <td width="50%" align="right">
-                <span style="color: red" id="overall-total-comments">0</span>
-                total comments
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
+    <section id="section-PRD-container"
+             class="d-none"
+             data-parent-container="section-PRD-container">
+        <div class="row bg-light">
+            <div class="col-lg-12 ">
+                <table width="100%" class="bg-light">
+                    <tr>
+                        <td class="p-3">
+                            <div class="h4 font-weight-bold mb-0 row">
+                                <div class="col-3">
+                                    <img src="images/image.png"
+                                         style="height: 30px"
+                                         class="bg-light" />
+                                </div>
+                                <div class="col-9">
+                                    <span class="text-dark">Scrap</span><span class="text-primary">Data</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-3" align="right">
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    <i class="far text-dark fa-question-circle fa-2x"
+                                       style="color: #ccc; font-size: 18px"></i>
+                                </span>
+                                <span id="logoutUser">
+                                    <i class="fas text-dark fa-sign-out-alt fa-2x"
+                                       style="color: #ccc; font-size: 18px"></i>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-12 bg-light">
+                <!-- style="background-color: #f4f4f4" -->
+                <form>
+                    <div class="modal-body">
+                        <div class="card mb-2" style="width: 20rem;">
+                            <img id="scrap-image" src="" />
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <div>
+                                    <label><b>Price Breakup:</b> </label><span class="text-danger">*</span>
+                                    <span id="PriceBreakup" class="form-group text-break "></span>
+                                </div>
+                                <div>
+                                    <label><b>Address:</b> </label><span class="text-danger">*</span>
+                                    <span id="Address" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>Booking Amount:</b> </label><span class="text-danger">*</span>
+                                    <span id="BookingAmount" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>Landmarks:</b> </label><span class="text-danger">*</span>
+                                    <span id="Landmarks" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>Furnishing:</b> </label><span class="text-danger">*</span>
+                                    <span id="Furnishing" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>Flooring:</b> </label><span class="text-danger">*</span>
+                                    <span id="Flooring" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>LoanOffered:</b> </label><span class="text-danger">*</span>
+                                    <span id="LoanOffered" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>Description:</b> </label><span class="text-danger">*</span>
+                                    <span id="Description" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>Super Built-Up Area:</b> </label><span class="text-danger">*</span>
+                                    <span id="SuperBuiltArea" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>Developer:</b> </label><span class="text-danger">*</span>
+                                    <span id="Developer" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>Project:</b> </label><span class="text-danger">*</span>
+                                    <span id="Project" class="form-group text-break "></span>
+                                </div> <div>
+                                    <label><b>Floor:</b> </label><span class="text-danger">*</span>
+                                    <span id="Floor" class="form-group text-break "></span>
+                                </div><div>
+                                    <label><b>Transaction Type:</b> </label><span class="text-danger">*</span>
+                                    <span id="TransactionType" class="form-group text-break "></span>
+                                </div><div>
+                                    <label><b>Additional Rooms:</b> </label><span class="text-danger">*</span>
+                                    <span id="AdditionalRooms" class="form-group text-break "></span>
+                                </div><div>
+                                    <label><b>Facing:</b> </label><span class="text-danger">*</span>
+                                    <span id="Facing" class="form-group text-break "></span>
+                                </div><div>
+                                    <label><b>Lifts:</b> </label><span class="text-danger">*</span>
+                                    <span id="Lifts" class="form-group text-break "></span>
+                                </div><div>
+                                    <label><b>Furnished Status:</b> </label><span class="text-danger">*</span>
+                                    <span id="FurnishedStatus" class="form-group text-break "></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-      <table width="100%">
-        <tr>
-          <td style="border-bottom: 1px solid #ccc"></td>
-        </tr>
-      </table>
+                </form>
+            </div>
+        </div>
+
+        <table width="100%">
+            <tr>
+                <td style="border-bottom: 1px solid #ccc"></td>
+            </tr>
+        </table>
     </section>
     <!-- /PRD section -->
     <!-- INT section -->
-    <section
-      id="section-INT-container"
-      class="d-none"
-      data-parent-container="section-INT-container"
-    >
-      <p>Welcome To Proofread Chrome Extension</p>
-      <select id="ddlContent" style="margin-bottom: 18px">
-        <option value="">--Select option--</option>
-        <option value="1">Hello World</option>
-      </select>
-      <br />
-      <button id="getText">Get Selected Text</button>
-      <br />
-      <p>Selected Text - <span id="selectedtext"> </span></p>
-      <br />
-      <span><button id="getUrl">Get Current URL</button></span>
-      <p><span id="url"> </span></p>
-      <br />
-      <button id="postUrl">Parse Current Article</button>
+    <section id="section-INT-container"
+             class="d-none"
+             data-parent-container="section-INT-container">
+        <p>Welcome To Proofread Chrome Extension</p>
+        <select id="ddlContent" style="margin-bottom: 18px">
+            <option value="">--Select option--</option>
+            <option value="1">Hello World</option>
+        </select>
+        <br />
+        <button id="getText">Get Selected Text</button>
+        <br />
+        <p>Selected Text - <span id="selectedtext"> </span></p>
+        <br />
+        <span><button id="getUrl">Get Current URL</button></span>
+        <p><span id="url"> </span></p>
+        <br />
+        <button id="postUrl">Parse Current Article</button>
     </section>
     <!-- /INT section -->
     <input type="hidden" id="currentUserId" />
-  </body>
+</body>
 </html>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="popup.js"></script>

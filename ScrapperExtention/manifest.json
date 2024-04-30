@@ -1,6 +1,6 @@
 {
-  "name": "Proofread",
-  "description": "Hello World.",
+  "name": "Chrome Scrapper",
+  "description": "Sample Extension for Scrapping.",
   "version": "0.1",
   "permissions": [
     "activeTab",
@@ -13,8 +13,8 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "css": ["css/bootstrap.min.css", "css/toastr.min.css"],
+      "matches": [ "<all_urls>" ],
+      "css": [ "css/bootstrap.min.css", "css/toastr.min.css" ],
       "js": [
         "js/jquery-2.1.1.js",
         "js/popper.js",
@@ -25,21 +25,21 @@
       "run_at": "document_end"
     }
   ],
-  "host_permissions": ["http://*/*", "https://*/*", "https://localhost:7278/api/posturl"],
+  "host_permissions": [ "http://*/*", "https://*/*", "https://localhost:7278/api/posturl" ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'",
     "sandbox": "sandbox"
   },
   "action": {
-    "default_icon": "images/icon.png",
+    "default_icon": "images/image.png",
     "default_popup": "popup.html"
   },
   "manifest_version": 3,
   "default_locale": "en",
   "web_accessible_resources": [
     {
-      "resources": ["modal.html", "images/*.png"],
-      "matches": ["<all_urls>"]
+      "resources": [ "modal.html", "images/*.png" ],
+      "matches": [ "<all_urls>" ]
     }
   ]
 }

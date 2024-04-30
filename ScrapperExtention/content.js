@@ -217,7 +217,6 @@ $(document).ready(function () {
 $(document).on("mouseover", ".proofread-comment", function (event) {
     if (event.relatedTarget.innerText !== null)
         var selectedContainer = event.relatedTarget.innerText;
-    console.log(selectedContainer);
     //var selectedContainer = event.target.parentElement.parentNode.innerText;
     if (event.toElement.innerText !== null)
         var selectedText = event.toElement.innerText;
@@ -519,7 +518,6 @@ function loadAllComment(url, data) {
         success: function successHandler(result) {
             if (result !== null) {
                 for (var i = 0; i < result.length; i++) {
-                    console.log("Comment count " + i)
                     markSubmittedComment(result[i]);
                 }
             }

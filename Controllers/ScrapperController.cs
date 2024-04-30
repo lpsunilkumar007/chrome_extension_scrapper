@@ -8,17 +8,11 @@ namespace ScrapperExtention.Controllers
     [Route("api/[controller]")]
     public class ScrapperController : ControllerBase
     {
-
-
         [HttpGet("GetPropperty")]
-        public async Task<ActionResult> GetPropperty(string url)
+        public async Task<ActionResult> GetPropperty(string scrapUrl)
         {
-            var dta = await RealEstateScraper.ScrapePropertiesAsync(url);
-            // Create a successful response            
-            /// var response = new ApiResponse<Dictionary<string, string>>(true,, "Request successful", loginViewModel.Email, loginViewModel.Password);
+            var dta = await RealEstateScraper.ScraperPropertiesAsync(scrapUrl);
             return Ok(dta);
         }
     }
-
-
 }
