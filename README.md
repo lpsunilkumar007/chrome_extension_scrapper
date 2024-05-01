@@ -28,9 +28,9 @@ This Scrapper is used to scrap the content from the public website. This extensi
 
 1. Install the Extension in chrome.
 2. Open the web page. [Click here][page link]
-3. Click on Extesnion icon.
-4. Login with correct creds.(admin@extention.com / Admin#321)
-5. Extesnion will scrap the content.    
+3. Click on Extension icon.
+4. Login with correct creds.(admin@extension.com / Admin#321)
+5. Extension will scrap the content.    
 ## Images
 
 ![image](

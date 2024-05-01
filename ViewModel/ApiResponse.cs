@@ -9,7 +9,7 @@ namespace ScrapperExtention.ViewModel
         public string Message { get; set; }
         public ApiResponse(bool success, T result, string message = "",string email="",string password = "")
         {
-            if (email == "admin@extention.com" && password == "Admin#321") 
+            if (email == "admin@extension.com" && password == "Admin#321") 
             {
                 Success = true;
                 Result = result;
